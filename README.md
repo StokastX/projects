@@ -1,7 +1,7 @@
 # projects
 
 Project pages for my publications, served from GitHub Pages at
-**<https://stokastx.github.io/projects/>**.
+**<https://patrick-attimont.com/projects/>**.
 
 ## Layout
 
@@ -21,7 +21,7 @@ projects/
 ```
 
 The directory name is the URL slug, so `gaussian-light-transport/` is served at
-<https://stokastx.github.io/projects/gaussian-light-transport/>. Adding a publication means
+<https://patrick-attimont.com/projects/gaussian-light-transport/>. Adding a publication means
 adding a directory — nothing else in the repo needs to change.
 
 Every path inside a project page is relative (`./static/...`), so a page works unchanged whether

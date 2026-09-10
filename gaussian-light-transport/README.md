@@ -3,7 +3,7 @@
 The project page for *Gaussian Light Transport* (SIGGRAPH Asia 2026, conference paper) by
 Patrick Attimont, Kartic Subr and Cyril Soler.
 
-Published at <https://stokastx.github.io/projects/gaussian-light-transport/>.
+Published at <https://patrick-attimont.com/projects/gaussian-light-transport/>.
 
 A single page with no framework, no build step and no JavaScript libraries — the markup, CSS and
 JS are written from scratch.
