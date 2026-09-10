@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+
+<title>Gaussian Light Transport — SIGGRAPH Asia 2026</title>
+<meta name="description" content="Global illumination expressed as a mixture of 13D Gaussians over position, direction, normal and material, optimised against the residual of the rendering equation. Minutes to train, milliseconds to render, from any viewpoint.">
+<meta name="author" content="Patrick Attimont, Kartic Subr, Cyril Soler">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gaussian Light Transport">
+<meta property="og:description" content="A view-independent solution to the rendering equation as a mixture of 13D Gaussians — trained in minutes, rendered in milliseconds.">
+<meta property="og:image" content="./static/images/og-preview.jpg">
+<!-- EDIT ME — set this to the published URL of the page -->
+<meta property="og:url" content="https://stokastx.github.io/projects/gaussian-light-transport/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="./static/images/og-preview.jpg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="./static/css/style.css">
+
+<!-- Without JS nothing gets the .is-visible class, so opt out of the reveal animation. -->
+<noscript><style>.reveal { opacity: 1 !important; transform: none !important; }</style></noscript>
+</head>
+
+<body>
+<a class="skip-link" href="#abstract">Skip to content</a>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<header class="nav" data-nav>
+  <div class="nav__progress" data-progress aria-hidden="true"></div>
+  <div class="shell nav__inner">
+
+    <a class="nav__brand" href="#top" aria-label="Gaussian Light Transport — back to top">
+      <span class="nav__brand-full" aria-hidden="true">gaussian-light-transport<i>/</i></span>
+      <span class="nav__brand-short" aria-hidden="true">glt<i>/</i></span>
+    </a>
+
+    <nav class="nav__links" aria-label="Sections">
+      <a href="#abstract">abstract</a>
+      <a href="#bibtex">bibtex</a>
+    </nav>
+
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+  <section class="hero">
+    <div class="shell band">
+      <p class="band__spacer" aria-hidden="true"></p>
+      <div class="band__body band__body--bare">
+
+      <p class="hero__venue">
+        <span class="pill">SIGGRAPH Asia 2026</span>
+        <span class="pill pill--ghost">Conference&nbsp;Track</span>
+      </p>
+
+      <!-- data-glyph-fit: "converge" = the mixture tightens onto the letterforms
+           and hands over to the text; "keep" = the mixture stays as the heading. -->
+      <h1 class="hero__title reveal" data-glyph-fit="converge">
+        <span class="gfit__w">Gaussian</span> <em><span class="gfit__w">Light</span> <span class="gfit__w">Transport</span></em>
+      </h1>
+
+      <p class="hero__tagline reveal">
+        Global illumination as an explicit mixture of 13D Gaussians, fitted directly against the
+        residual of the rendering equation.
+      </p>
+
+      <ul class="authors reveal">
+        <li><a href="https://patrick-attimont.com">Patrick Attimont</a><sup>1</sup></li>
+        <li><a href="https://homepages.inf.ed.ac.uk/ksubr/">Kartic Subr</a><sup>2</sup></li>
+        <li><a href="https://maverick.inria.fr/Membres/Cyril.Soler/">Cyril Soler</a><sup>1</sup></li>
+      </ul>
+
+      <ul class="affiliations reveal">
+        <li><sup>1</sup>Inria &middot; Université Grenoble Alpes, France</li>
+        <li><sup>2</sup>University of Edinburgh, United Kingdom</li>
+      </ul>
+
+      <div class="linkbar reveal">
+        <a class="btn btn--primary" href="./static/paper/paper.pdf">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h4"/></svg>
+          paper.pdf
+        </a>
+        <!-- EDIT ME — arXiv id, once the preprint is posted -->
+        <a class="btn" href="https://arxiv.org/abs/0000.00000">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9.5 8.5l5 7M14.5 8.5l-5 7"/></svg>
+          arXiv
+        </a>
+        <!-- EDIT ME — public code mirror; the working repo is on gitlab.inria.fr -->
+        <a class="btn" href="https://github.com/StokastX">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M12 .5C5.37.5 0 5.78 0 12.29c0 5.21 3.44 9.63 8.21 11.19.6.11.82-.25.82-.57 0-.28-.01-1.02-.02-2-3.34.71-4.04-1.59-4.04-1.59-.55-1.36-1.34-1.72-1.34-1.72-1.09-.73.08-.72.08-.72 1.21.08 1.84 1.22 1.84 1.22 1.07 1.8 2.81 1.28 3.5.98.11-.76.42-1.28.76-1.58-2.67-.29-5.47-1.31-5.47-5.82 0-1.29.47-2.34 1.24-3.17-.14-.3-.54-1.5.11-3.12 0 0 1-.32 3.3 1.21a11.5 11.5 0 0 1 6 0c2.28-1.53 3.29-1.21 3.29-1.21.65 1.62.24 2.82.12 3.12.77.83 1.23 1.88 1.23 3.17 0 4.53-2.81 5.53-5.48 5.82.42.35.81 1.08.81 2.18 0 1.58-.01 2.85-.01 3.23 0 .31.21.68.83.56C20.57 21.92 24 17.5 24 12.29 24 5.78 18.63.5 12 .5z"/></svg>
+          code
+        </a>
+        <a class="btn" href="#bibtex">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H19v18H6.5A2.5 2.5 0 0 1 4 18.5z"/><path d="M4 18.5A2.5 2.5 0 0 1 6.5 16H19"/></svg>
+          bibtex
+        </a>
+      </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ABSTRACT
+       ============================================================ -->
+  <section class="section" id="abstract">
+    <div class="shell band reveal">
+      <p class="band__no" aria-hidden="true"></p>
+      <div class="band__body">
+        <header class="head">
+          <h2>abstract</h2>
+        </header>
+
+        <div class="prose">
+          <p>
+            We present a novel method for computing global illumination by expressing the solution
+            to the light transport equation as a <strong>13D Gaussian mixture model</strong> over
+            positions, directions, surface normals and material properties. We show that including
+            scene properties inside the Gaussian drastically reduces the number of functions needed
+            and speeds up evaluation. As opposed to traditional light transport methods based on
+            Neumann series, the parameters of our model are estimated directly by minimising the
+            residual of the rendering equation.
+          </p>
+          <p>
+            While both optimisation and rendering require repeated evaluations of a linear
+            combination of high-dimensional Gaussian functions, we introduce an efficient culling
+            strategy that keeps the optimisation tractable and produces renderings in real time.
+            Our representation yields fast, view-independent solutions to the light transport
+            equation, with rendering times on the order of milliseconds and a fraction of the
+            memory requirements of conventional neural rendering approaches.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       BIBTEX
+       ============================================================ -->
+  <section class="section" id="bibtex">
+    <div class="shell band reveal">
+      <p class="band__no" aria-hidden="true"></p>
+      <div class="band__body">
+        <header class="head">
+          <h2>bibtex</h2>
+        </header>
+
+        <div class="codeblock">
+          <button class="codeblock__copy" type="button" data-copy aria-label="Copy the BibTeX entry">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M6 15H4.5A1.5 1.5 0 0 1 3 13.5v-9A1.5 1.5 0 0 1 4.5 3h9A1.5 1.5 0 0 1 15 4.5V6"/></svg>
+            <span data-copy-label>copy</span>
+          </button>
+<!-- EDIT ME — placeholder entry. Replace it wholesale with the official one
+     from the ACM Digital Library once the proceedings are assigned. -->
+<pre><code data-copy-source>@inproceedings{attimont2026gaussian,
+  author    = {Attimont, Patrick and Subr, Kartic and Soler, Cyril},
+  title     = {Gaussian Light Transport},
+  booktitle = {SIGGRAPH Asia 2026 Conference Papers},
+  series    = {SA Conference Papers '26},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  year      = {2026}
+}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="shell">
+    <p>
+      This page borrows its structure from the
+      <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a> project page, and is
+      released under a
+      <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a> licence —
+      please keep this notice if you reuse it.
+    </p>
+    <p class="footer__meta">© 2026 Patrick Attimont, Kartic Subr, Cyril Soler</p>
+  </div>
+</footer>
+
+<script src="./static/js/main.js" defer></script>
+</body>
+</html>
