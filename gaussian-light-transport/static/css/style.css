@@ -384,6 +384,15 @@ main { counter-reset: band; }
   letter-spacing: 0;
 }
 
+/* A pill that is not a link yet — same shape, dialled back, inert. */
+.btn--muted {
+  color: var(--ink-faint);
+  border-color: var(--line);
+  border-style: dashed;
+  cursor: default;
+}
+.btn--muted:hover { background: transparent; border-color: var(--line); }
+
 .btn--primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .btn--primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--bg); }
 
