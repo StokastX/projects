@@ -374,6 +374,16 @@ main { counter-reset: band; }
 .btn:hover { border-color: var(--ink); background: var(--surface); }
 .btn .icon { width: 15px; height: 15px; }
 
+/* Trailing marker for a link whose target is not live yet ("soon"). */
+.btn__tag {
+  padding: .05rem .4rem;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  color: var(--accent-ink);
+  font-size: .68rem;
+  letter-spacing: 0;
+}
+
 .btn--primary { background: var(--ink); color: var(--bg); border-color: var(--ink); }
 .btn--primary:hover { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--bg); }
 
