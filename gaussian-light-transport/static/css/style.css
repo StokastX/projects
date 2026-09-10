@@ -355,7 +355,7 @@ main { counter-reset: band; }
   margin: 0;
   color: var(--ink-faint);
   font-family: var(--font-mono);
-  font-size: .84rem;
+  font-size: .90rem;
 }
 
 .linkbar { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.8rem; }

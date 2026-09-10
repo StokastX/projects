@@ -50,7 +50,6 @@ publishes; there is no build step.
 
 ## Licence
 
-The page markup, styles and scripts are released under
-[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/), inherited from the
-[Nerfies](https://github.com/nerfies/nerfies.github.io) project page whose structure they follow.
-Papers and figures remain under their respective publishers' terms.
+The page markup, styles and scripts are original work, released under
+[CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/). Papers and figures remain under
+their respective publishers' terms.

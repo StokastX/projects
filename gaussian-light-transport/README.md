@@ -22,8 +22,9 @@ Each of these is marked with an `EDIT ME` comment in `index.html`:
 
 - **arXiv link** — currently a placeholder id.
 - **Code link** — points at the GitHub profile; swap in the public mirror when there is one.
-- **BibTeX** — a hand-written placeholder. Replace it with the official entry from the ACM
-  Digital Library once the proceedings are assigned.
+- **BibTeX** — the section is a “to be determined” note. Drop in the official entry from the
+  ACM Digital Library once the proceedings are assigned, and restore the copy button (the markup
+  for it is kept in a comment right above the block).
 
 ## Run it locally
 
