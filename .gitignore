@@ -5,3 +5,6 @@ desktop.ini
 .idea/
 .vscode/
 node_modules/
+
+# Local agent notes, not published
+/CLAUDE.md
