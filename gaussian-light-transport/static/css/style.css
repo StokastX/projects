@@ -729,6 +729,31 @@ code {
 /* Without JS the attribute is never set, so fall back to the render. */
 [data-vswap]:not([data-vswap-show]) [data-vswap-layer="render"] { opacity: 1; }
 
+/* Fullscreen affordance on each card. Sits over the clip, stays out of the
+   way until the card is hovered, and is always visible to keyboard and touch. */
+.fs-btn {
+  position: absolute; bottom: .5rem; right: .5rem; z-index: 2;
+  display: grid; place-items: center;
+  width: 30px; height: 30px; padding: 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--bg) 30%, transparent);
+  background: color-mix(in srgb, #241f19 55%, transparent);
+  color: #f2ebdd;
+  cursor: pointer;
+  opacity: 0; transition: opacity .18s var(--ease), background .18s var(--ease);
+}
+.fs-btn svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.fs-btn:hover { background: color-mix(in srgb, #241f19 80%, transparent); }
+.scene__stack:hover .fs-btn, .fs-btn:focus-visible { opacity: 1; }
+/* No hover on touch, so never hide it there. */
+@media (hover: none) { .fs-btn { opacity: 1; } }
+
+/* In fullscreen the card fills the screen: letterbox rather than crop, and
+   drop the rounding and border that only make sense inside the grid. */
+.scene__stack:fullscreen { border: 0; border-radius: 0; background: #000; aspect-ratio: auto; }
+.scene__stack:fullscreen video { object-fit: contain; }
+.scene__stack:fullscreen .fs-btn { opacity: 1; }
+
 .scene figcaption {
   margin-top: .5rem;
   font-family: var(--font-mono);

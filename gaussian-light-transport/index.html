@@ -57,6 +57,7 @@
 
     <nav class="nav__links" aria-label="Sections">
       <a href="#abstract">abstract</a>
+      <a href="#renderings">renderings</a>
       <a href="#bibtex">bibtex</a>
     </nav>
 
@@ -124,7 +125,7 @@
         <div class="plate">
           <video data-autopause preload="none" muted loop playsinline
                  poster="./static/images/posters/living-room-wipe.jpg"
-                 width="1280" height="720"
+                 width="1920" height="1080"
                  aria-label="A live fly-around of the Living Room, passing from the render to the flattened Gaussians it is made of">
             <source src="./static/videos/living-room-wipe.mp4" type="video/mp4">
           </video>
@@ -132,11 +133,8 @@
         <figcaption class="figcap">
           <span class="fignum">fig.1</span>
           <strong>Living Room</strong>, captured live at 1920&times;1080 — first rendered from the
-          optimised mixture, then drawn as the flattened Gaussians it is made of. The frame rate in
-          the corner is the one recorded.
-          <!-- EDIT ME — the previous cut of this caption also quoted "38.4K Gaussians,
-               5.8 MB on disk, 11m30s of training on one RTX 4080 SUPER". Those figures came
-               from the earlier run; re-add them here once they are confirmed for this clip. -->
+          optimised mixture, then drawn as the flattened Gaussians it is made of. 38.4K Gaussians,
+          5.8 MB on disk, 11m30s of training on one RTX 4080 SUPER.
         </figcaption>
       </figure>
 
@@ -173,6 +171,137 @@
             equation, with rendering times on the order of milliseconds and a fraction of the
             memory requirements of conventional neural rendering approaches.
           </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       RENDERINGS — paired clips under one toggle
+       ============================================================ -->
+  <section class="section section--tint" id="renderings">
+    <div class="shell band reveal">
+      <p class="band__no" aria-hidden="true"></p>
+      <div class="band__body">
+        <header class="head">
+          <h2>renderings</h2>
+          <p class="lede">
+            Live capture of the models at 1920&times;1080, 1spp on six scenes, and the flattened Gaussians they are made of. Because the
+            kernel has a directional component, that visualised support moves with the camera.
+          </p>
+        </header>
+
+        <div data-vswap>
+          <div class="switch" role="group" aria-label="Choose what the clips show">
+            <span class="switch__label" aria-hidden="true">showing</span>
+            <button type="button" class="chip is-active" data-vswap-btn="render" aria-pressed="true">rendered</button>
+            <button type="button" class="chip" data-vswap-btn="flat" aria-pressed="false">flattened gaussians</button>
+          </div>
+
+          <ul class="scenes">
+            <li>
+              <figure class="scene">
+                <div class="scene__stack" data-vswap-card>
+                  <video data-vswap-layer="render" preload="none" muted loop playsinline
+                         poster="./static/images/posters/bedroom-gs.jpg"
+                         aria-label="Bedroom, rendered from the Gaussian mixture">
+                    <source src="./static/videos/bedroom-gs.mp4" type="video/mp4"></video>
+                  <video data-vswap-layer="flat" preload="none" muted loop playsinline
+                         poster="./static/images/posters/bedroom-flat.jpg"
+                         aria-label="The same Bedroom Gaussians, flattened onto the scene geometry">
+                    <source src="./static/videos/bedroom-flat.mp4" type="video/mp4"></video>
+                  <button class="fs-btn" type="button" data-fullscreen
+                          aria-label="View bedroom fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
+                </div>
+                <figcaption><b>bedroom</b>28.7K gaussians &middot; 4.4 MB</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="scene">
+                <div class="scene__stack" data-vswap-card>
+                  <video data-vswap-layer="render" preload="none" muted loop playsinline
+                         poster="./static/images/posters/dining-room-gs.jpg"
+                         aria-label="Dining Room, rendered from the Gaussian mixture">
+                    <source src="./static/videos/dining-room-gs.mp4" type="video/mp4"></video>
+                  <video data-vswap-layer="flat" preload="none" muted loop playsinline
+                         poster="./static/images/posters/dining-room-flat.jpg"
+                         aria-label="The same Dining Room Gaussians, flattened onto the scene geometry">
+                    <source src="./static/videos/dining-room-flat.mp4" type="video/mp4"></video>
+                  <button class="fs-btn" type="button" data-fullscreen
+                          aria-label="View dining room fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
+                </div>
+                <figcaption><b>dining room</b>35.2K gaussians &middot; 5.4 MB</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="scene">
+                <div class="scene__stack" data-vswap-card>
+                  <video data-vswap-layer="render" preload="none" muted loop playsinline
+                         poster="./static/images/posters/veach-ajar-gs.jpg"
+                         aria-label="Veach Ajar, rendered from the Gaussian mixture">
+                    <source src="./static/videos/veach-ajar-gs.mp4" type="video/mp4"></video>
+                  <video data-vswap-layer="flat" preload="none" muted loop playsinline
+                         poster="./static/images/posters/veach-ajar-flat.jpg"
+                         aria-label="The same Veach Ajar Gaussians, flattened onto the scene geometry">
+                    <source src="./static/videos/veach-ajar-flat.mp4" type="video/mp4"></video>
+                  <button class="fs-btn" type="button" data-fullscreen
+                          aria-label="View veach ajar fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
+                </div>
+                <figcaption><b>veach ajar</b>27.1K gaussians &middot; 4.1 MB</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="scene">
+                <div class="scene__stack" data-vswap-card>
+                  <video data-vswap-layer="render" preload="none" muted loop playsinline
+                         poster="./static/images/posters/staircase-gs.jpg"
+                         aria-label="Staircase, rendered from the Gaussian mixture">
+                    <source src="./static/videos/staircase-gs.mp4" type="video/mp4"></video>
+                  <video data-vswap-layer="flat" preload="none" muted loop playsinline
+                         poster="./static/images/posters/staircase-flat.jpg"
+                         aria-label="The same Staircase Gaussians, flattened onto the scene geometry">
+                    <source src="./static/videos/staircase-flat.mp4" type="video/mp4"></video>
+                  <button class="fs-btn" type="button" data-fullscreen
+                          aria-label="View staircase fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
+                </div>
+                <figcaption><b>staircase</b>42.2K gaussians &middot; 6.4 MB</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="scene">
+                <div class="scene__stack" data-vswap-card>
+                  <video data-vswap-layer="render" preload="none" muted loop playsinline
+                         poster="./static/images/posters/chair-gs.jpg"
+                         aria-label="Chair, rendered from the Gaussian mixture">
+                    <source src="./static/videos/chair-gs.mp4" type="video/mp4"></video>
+                  <video data-vswap-layer="flat" preload="none" muted loop playsinline
+                         poster="./static/images/posters/chair-flat.jpg"
+                         aria-label="The same Chair Gaussians, flattened onto the scene geometry">
+                    <source src="./static/videos/chair-flat.mp4" type="video/mp4"></video>
+                  <button class="fs-btn" type="button" data-fullscreen
+                          aria-label="View chair fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
+                </div>
+                <figcaption><b>chair</b>28.2K gaussians &middot; 4.3 MB</figcaption>
+              </figure>
+            </li>
+            <li>
+              <figure class="scene">
+                <div class="scene__stack" data-vswap-card>
+                  <video data-vswap-layer="render" preload="none" muted loop playsinline
+                         poster="./static/images/posters/rings-gs.jpg"
+                         aria-label="Rings, rendered from the Gaussian mixture">
+                    <source src="./static/videos/rings-gs.mp4" type="video/mp4"></video>
+                  <video data-vswap-layer="flat" preload="none" muted loop playsinline
+                         poster="./static/images/posters/rings-flat.jpg"
+                         aria-label="The same Rings Gaussians, flattened onto the scene geometry">
+                    <source src="./static/videos/rings-flat.mp4" type="video/mp4"></video>
+                  <button class="fs-btn" type="button" data-fullscreen
+                          aria-label="View rings fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3M16 3h3a2 2 0 0 1 2 2v3M8 21H5a2 2 0 0 1-2-2v-3M16 21h3a2 2 0 0 0 2-2v-3"/></svg></button>
+                </div>
+                <figcaption><b>rings</b>6.5K gaussians &middot; 1.0 MB</figcaption>
+              </figure>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

@@ -790,4 +790,48 @@
     if (reduceMotion) cards.forEach(c => layers(c).forEach(v => { v.controls = true; }));
   });
 
+
+  /* ---------- 10. Fullscreen a scene card --------------------- */
+
+  /* The card, not the video: that keeps both layers and whatever the
+     rendered/flat switch has selected. iOS Safari has no element
+     fullscreen at all, so there we hand the visible layer to the native
+     player instead. */
+  (function fullscreenCards() {
+    const btns = $$('[data-fullscreen]');
+    if (!btns.length) return;
+
+    const request = el =>
+      el.requestFullscreen ? el.requestFullscreen()
+      : el.webkitRequestFullscreen ? el.webkitRequestFullscreen()
+      : null;
+
+    const current = () => document.fullscreenElement || document.webkitFullscreenElement;
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('[data-vswap-card]');
+        if (!card) return;
+
+        if (current()) {
+          (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+          return;
+        }
+
+        const done = request(card);
+        if (done && done.catch) done.catch(() => {});
+        if (!done) {
+          // iOS: no element fullscreen, so use the native player on the
+          // layer that is actually showing.
+          const shown = $$('[data-vswap-layer]', card)
+            .filter(v => getComputedStyle(v).opacity !== '0')[0];
+          if (shown && shown.webkitEnterFullscreen) {
+            shown.play().catch(() => {});
+            shown.webkitEnterFullscreen();
+          }
+        }
+      });
+    });
+  })();
+
 })();
