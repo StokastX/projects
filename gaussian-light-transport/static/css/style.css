@@ -191,7 +191,16 @@ main { counter-reset: band; }
   text-wrap: pretty;
 }
 /* Inline citation in a lede. */
-.ref { color: var(--ink-faint); font-size: .88em; }
+/* Citation marker. Mono and oxblood, like the figure tags and rail numbers —
+   structure, not prose. Links down to the reference list. */
+.ref {
+  font-family: var(--font-mono);
+  font-size: .76em;
+  color: var(--accent-ink);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.ref:hover, .ref:focus-visible { text-decoration: underline; }
 
 
 /* ---------- 4. Navigation ------------------------------------- */
@@ -511,13 +520,40 @@ main { counter-reset: band; }
 .prose abbr { text-decoration: underline dotted; cursor: help; }
 .prose--small p { font-size: .96rem; }
 
-.ack__title {
+.ack__title, .refs__title {
   font-family: var(--font-mono);
   font-size: 1rem; font-weight: 500;
   letter-spacing: -.03em;
   margin-bottom: .5rem;
 }
-.ack__title::before { content: "/"; color: var(--accent); }
+.ack__title::before, .refs__title::before { content: "/"; color: var(--accent); }
+
+/* Reference list: numbered in the mono voice, the entry itself in prose. */
+.refs {
+  list-style: none;
+  margin: 0; padding: 0;
+  counter-reset: ref;
+  display: grid; gap: .6rem;
+  max-width: 46rem;
+}
+.refs li {
+  counter-increment: ref;
+  position: relative;
+  padding-left: 2.1rem;
+  color: var(--ink-soft);
+  font-size: .88rem;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+.refs li::before {
+  content: "[" counter(ref) "]";
+  position: absolute; left: 0; top: 0;
+  font-family: var(--font-mono);
+  font-size: .78rem;
+  color: var(--accent-ink);
+}
+.refs a { color: var(--ink-faint); }
+.refs :target, .refs li:target { color: var(--ink); }
 
 /* Notes on the method: a ruled list in columns, not a row of cards. */
 .notes {
@@ -592,8 +628,11 @@ code {
 .cmp__meta {
   font-family: var(--font-mono);
   font-size: .76rem;
-  color: var(--ink-faint);
+  color: var(--ink-soft);
 }
+/* "training" reads as the label, the times as the values — same faint-label
+   trick as .switch__label before the chips. */
+.cmp__label { color: var(--ink-faint); margin-right: .45em; }
 
 .cmp__frame {
   --pos: 50%;

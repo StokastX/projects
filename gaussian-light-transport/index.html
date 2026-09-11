@@ -58,6 +58,7 @@
     <nav class="nav__links" aria-label="Sections">
       <a href="#abstract">abstract</a>
       <a href="#renderings">renderings</a>
+      <a href="#comparisons">comparisons</a>
       <a href="#bibtex">bibtex</a>
     </nav>
 
@@ -186,7 +187,7 @@
         <header class="head">
           <h2>renderings</h2>
           <p class="lede">
-            Live capture of the models at 1920&times;1080, 1spp on six scenes, and the flattened Gaussians they are made of. Because the
+            Live capture of the models at 1920&times;1080, 1 spp on six scenes, and the flattened Gaussians they are made of. Because the
             kernel has a directional component, that visualised support moves with the camera.
           </p>
         </header>
@@ -302,7 +303,215 @@
               </figure>
             </li>
           </ul>
+
+          <p class="figcap">
+            <span class="fignum">fig.2</span>
+            Our Gaussian model adapts to geometric complexity, while capturing caustics, glossy and specular
+            surfaces and textures, all from a few megabytes. Frame times run 10&ndash;17&nbsp;ms at
+            1&nbsp;spp, 1920&times;1080, on one RTX&nbsp;4080&nbsp;SUPER.
+          </p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMPARISONS — interactive sliders
+       ============================================================ -->
+  <section class="section" id="comparisons">
+    <div class="shell band reveal">
+      <p class="band__no" aria-hidden="true"></p>
+      <div class="band__body">
+        <header class="head">
+          <h2>comparisons</h2>
+          <p class="lede">
+            64&nbsp;spp renders of the same viewpoint at 1920&times;1080, against Neural
+            Radiosity&nbsp;<a class="ref" href="#ref-1">[1]</a> under two feature encodings — the
+            multi-resolution hash grid of M&uuml;ller et&nbsp;al.&nbsp;<a class="ref" href="#ref-2">[2]</a>
+            and the vertex features of Su et&nbsp;al.&nbsp;<a class="ref" href="#ref-3">[3]</a> — trained
+            for 1.5 to 4.5&nbsp;hours.
+          </p>
+        </header>
+
+        <div class="cmp-grid">
+
+          <!-- ---------- Living Room ---------- -->
+          <figure class="cmp" data-compare>
+            <figcaption class="cmp__head">
+              <h3>living room</h3>
+              <span class="cmp__meta"><span class="cmp__label">training:</span>NR 4h29m &middot; ours 11m30s</span>
+            </figcaption>
+
+            <div class="cmp__frame" data-cmp-frame style="--pos:50%">
+              <img class="cmp__img" src="./static/images/comparisons/living-room-ours.jpg"
+                   alt="Our result on the Living Room scene" loading="lazy" decoding="async" width="1600" height="900">
+              <div class="cmp__clip">
+                <img class="cmp__img" data-cmp-base
+                     src="./static/images/comparisons/living-room-nr-hash.jpg"
+                     alt="Neural Radiosity with a hash grid on the Living Room scene" loading="lazy" decoding="async" width="1600" height="900">
+              </div>
+
+              <span class="cmp__tag cmp__tag--left" data-cmp-name>NR (hash grid)</span>
+              <span class="cmp__tag cmp__tag--right">ours</span>
+
+              <div class="cmp__handle" data-cmp-handle role="slider" tabindex="0"
+                   aria-orientation="horizontal" aria-label="Wipe between the baseline and our result"
+                   aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% ours">
+                <span class="cmp__grip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M14.5 7l4 5-4 5M9.5 7l-4 5 4 5"/></svg>
+                </span>
+              </div>
+            </div>
+
+            <div class="cmp__methods" role="group" aria-label="Baselines for the Living Room scene">
+              <button type="button" class="chip is-active" data-cmp-method
+                      data-note="NR (hash grid): FLIP 0.1326 · 35.7 MB — ours 0.1177 · 5.8 MB"
+                      data-src="./static/images/comparisons/living-room-nr-hash.jpg">NR (hash grid)</button>
+              <button type="button" class="chip" data-cmp-method
+                      data-note="NR (vertex feat.): FLIP 0.1362 · 5.3 MB — ours 0.1177 · 5.8 MB"
+                      data-src="./static/images/comparisons/living-room-nr-vertex.jpg">NR (vertex feat.)</button>
+              <button type="button" class="chip" data-cmp-method
+                      data-note="Path-traced reference — ours reaches FLIP 0.1177 against it"
+                      data-src="./static/images/comparisons/living-room-reference.jpg">reference</button>
+            </div>
+            <p class="cmp__note" data-cmp-note>NR (hash grid): FLIP 0.1326 · 35.7 MB — ours 0.1177 · 5.8 MB</p>
+          </figure>
+
+          <!-- ---------- Bedroom ---------- -->
+          <figure class="cmp" data-compare>
+            <figcaption class="cmp__head">
+              <h3>bedroom</h3>
+              <span class="cmp__meta"><span class="cmp__label">training:</span>NR 2h10m &middot; ours 10m48s</span>
+            </figcaption>
+
+            <div class="cmp__frame" data-cmp-frame style="--pos:50%">
+              <img class="cmp__img" src="./static/images/comparisons/bedroom-ours.jpg"
+                   alt="Our result on the Bedroom scene" loading="lazy" decoding="async" width="1600" height="900">
+              <div class="cmp__clip">
+                <img class="cmp__img" data-cmp-base
+                     src="./static/images/comparisons/bedroom-nr-hash.jpg"
+                     alt="Neural Radiosity with a hash grid on the Bedroom scene" loading="lazy" decoding="async" width="1600" height="900">
+              </div>
+
+              <span class="cmp__tag cmp__tag--left" data-cmp-name>NR (hash grid)</span>
+              <span class="cmp__tag cmp__tag--right">ours</span>
+
+              <div class="cmp__handle" data-cmp-handle role="slider" tabindex="0"
+                   aria-orientation="horizontal" aria-label="Wipe between the baseline and our result"
+                   aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% ours">
+                <span class="cmp__grip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M14.5 7l4 5-4 5M9.5 7l-4 5 4 5"/></svg>
+                </span>
+              </div>
+            </div>
+
+            <div class="cmp__methods" role="group" aria-label="Baselines for the Bedroom scene">
+              <button type="button" class="chip is-active" data-cmp-method
+                      data-note="NR (hash grid): FLIP 0.0967 · 35.7 MB — ours 0.0824 · 4.4 MB"
+                      data-src="./static/images/comparisons/bedroom-nr-hash.jpg">NR (hash grid)</button>
+              <button type="button" class="chip" data-cmp-method
+                      data-note="NR (vertex feat.): FLIP 0.0774 · 26.4 MB — ours 0.0824 · 4.4 MB."
+                      data-src="./static/images/comparisons/bedroom-nr-vertex.jpg">NR (vertex feat.)</button>
+              <button type="button" class="chip" data-cmp-method
+                      data-note="Path-traced reference — ours reaches FLIP 0.0824 against it"
+                      data-src="./static/images/comparisons/bedroom-reference.jpg">reference</button>
+            </div>
+            <p class="cmp__note" data-cmp-note>NR (hash grid): FLIP 0.0967 · 35.7 MB — ours 0.0824 · 4.4 MB</p>
+          </figure>
+
+          <!-- ---------- Dining Room ---------- -->
+          <figure class="cmp" data-compare>
+            <figcaption class="cmp__head">
+              <h3>dining room</h3>
+              <span class="cmp__meta"><span class="cmp__label">training:</span>NR 1h54m &middot; ours 9m17s</span>
+            </figcaption>
+
+            <div class="cmp__frame" data-cmp-frame style="--pos:50%">
+              <img class="cmp__img" src="./static/images/comparisons/dining-room-ours.jpg"
+                   alt="Our result on the Dining Room scene" loading="lazy" decoding="async" width="1600" height="900">
+              <div class="cmp__clip">
+                <img class="cmp__img" data-cmp-base
+                     src="./static/images/comparisons/dining-room-nr-hash.jpg"
+                     alt="Neural Radiosity with a hash grid on the Dining Room scene" loading="lazy" decoding="async" width="1600" height="900">
+              </div>
+
+              <span class="cmp__tag cmp__tag--left" data-cmp-name>NR (hash grid)</span>
+              <span class="cmp__tag cmp__tag--right">ours</span>
+
+              <div class="cmp__handle" data-cmp-handle role="slider" tabindex="0"
+                   aria-orientation="horizontal" aria-label="Wipe between the baseline and our result"
+                   aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% ours">
+                <span class="cmp__grip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M14.5 7l4 5-4 5M9.5 7l-4 5 4 5"/></svg>
+                </span>
+              </div>
+            </div>
+
+            <div class="cmp__methods" role="group" aria-label="Baselines for the Dining Room scene">
+              <button type="button" class="chip is-active" data-cmp-method
+                      data-note="NR (hash grid): FLIP 0.2455 · 35.7 MB — ours 0.0831 · 5.4 MB"
+                      data-src="./static/images/comparisons/dining-room-nr-hash.jpg">NR (hash grid)</button>
+              <button type="button" class="chip" data-cmp-method
+                      data-note="NR (vertex feat.): FLIP 0.1012 · 6.0 MB — ours 0.0831 · 5.4 MB"
+                      data-src="./static/images/comparisons/dining-room-nr-vertex.jpg">NR (vertex feat.)</button>
+              <button type="button" class="chip" data-cmp-method
+                      data-note="Path-traced reference — ours reaches FLIP 0.0831 against it"
+                      data-src="./static/images/comparisons/dining-room-reference.jpg">reference</button>
+            </div>
+            <p class="cmp__note" data-cmp-note>NR (hash grid): FLIP 0.2455 · 35.7 MB — ours 0.0831 · 5.4 MB</p>
+          </figure>
+
+          <!-- ---------- Veach Ajar ---------- -->
+          <figure class="cmp" data-compare>
+            <figcaption class="cmp__head">
+              <h3>veach ajar</h3>
+              <span class="cmp__meta"><span class="cmp__label">training:</span>NR 2h25m &middot; ours 12m08s</span>
+            </figcaption>
+
+            <div class="cmp__frame" data-cmp-frame style="--pos:50%">
+              <img class="cmp__img" src="./static/images/comparisons/veach-ajar-ours.jpg"
+                   alt="Our result on the Veach Ajar scene" loading="lazy" decoding="async" width="1600" height="900">
+              <div class="cmp__clip">
+                <img class="cmp__img" data-cmp-base
+                     src="./static/images/comparisons/veach-ajar-nr-hash.jpg"
+                     alt="Neural Radiosity with a hash grid on the Veach Ajar scene" loading="lazy" decoding="async" width="1600" height="900">
+              </div>
+
+              <span class="cmp__tag cmp__tag--left" data-cmp-name>NR (hash grid)</span>
+              <span class="cmp__tag cmp__tag--right">ours</span>
+
+              <div class="cmp__handle" data-cmp-handle role="slider" tabindex="0"
+                   aria-orientation="horizontal" aria-label="Wipe between the baseline and our result"
+                   aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="50% ours">
+                <span class="cmp__grip" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M14.5 7l4 5-4 5M9.5 7l-4 5 4 5"/></svg>
+                </span>
+              </div>
+            </div>
+
+            <div class="cmp__methods" role="group" aria-label="Baselines for the Veach Ajar scene">
+              <button type="button" class="chip is-active" data-cmp-method
+                      data-note="NR (hash grid): FLIP 0.1978 · 35.7 MB — ours 0.0641 · 4.1 MB"
+                      data-src="./static/images/comparisons/veach-ajar-nr-hash.jpg">NR (hash grid)</button>
+              <button type="button" class="chip" data-cmp-method
+                      data-note="NR (vertex feat.): FLIP 0.1499 · 6.5 MB — ours 0.0641 · 4.1 MB"
+                      data-src="./static/images/comparisons/veach-ajar-nr-vertex.jpg">NR (vertex feat.)</button>
+              <button type="button" class="chip" data-cmp-method
+                      data-note="Path-traced reference — ours reaches FLIP 0.0641 against it"
+                      data-src="./static/images/comparisons/veach-ajar-reference.jpg">reference</button>
+            </div>
+            <p class="cmp__note" data-cmp-note>NR (hash grid): FLIP 0.1978 · 35.7 MB — ours 0.0641 · 4.1 MB</p>
+          </figure>
+
+        </div>
+
+        <p class="figcap">
+          <span class="fignum">fig.3</span>
+          Our method uses a fixed 30K iterations on every scene. Model size behaves differently for the two encodings:
+          the hash grid is a fixed 35.7&nbsp;MB irrespective of the scene, while vertex features range
+          from 0.9&nbsp;MB to 26.4&nbsp;MB. Our representation is bounded by the number of Gaussians rather than by
+          either grid resolution or tessellation and stays between 1&nbsp;MB and 5.9&nbsp;MB.
+        </p>
       </div>
     </div>
   </section>
@@ -331,6 +540,39 @@
       </div>
     </div>
   </section>
+  <!-- ============================================================
+       REFERENCES — unnumbered, so it takes no rail index
+       ============================================================ -->
+  <section class="section section--slim" id="references">
+    <div class="shell band">
+      <p class="band__spacer" aria-hidden="true"></p>
+      <div class="band__body band__body--bare">
+        <div class="reveal">
+          <h2 class="refs__title">references</h2>
+          <ol class="refs">
+            <li id="ref-1">
+              Saeed Hadadan, Shuhong Chen, and Matthias Zwicker. 2021. Neural Radiosity.
+              <em>ACM Transactions on Graphics</em> 40, 6, Article 236, 11 pages.
+              <a href="https://doi.org/10.1145/3478513.3480569">doi:10.1145/3478513.3480569</a>
+            </li>
+            <li id="ref-2">
+              Thomas M&uuml;ller, Alex Evans, Christoph Schied, and Alexander Keller. 2022. Instant
+              Neural Graphics Primitives with a Multiresolution Hash Encoding.
+              <em>ACM Transactions on Graphics</em> 41, 4, 1&ndash;15.
+              <a href="https://doi.org/10.1145/3528223.3530127">doi:10.1145/3528223.3530127</a>
+            </li>
+            <li id="ref-3">
+              Rui Su, Honghao Dong, Haojie Jin, Yisong Chen, Guoping Wang, and Sheng Li. 2025.
+              Vertex Features for Neural Global Illumination.
+              <em>SIGGRAPH Asia 2025 Conference Papers</em>, Article 10, 11 pages.
+              <a href="https://doi.org/10.1145/3757377.3763826">doi:10.1145/3757377.3763826</a>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 
 <footer class="footer">
